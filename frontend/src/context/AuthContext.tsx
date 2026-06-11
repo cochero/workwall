@@ -5,7 +5,7 @@ import type { User } from '../lib/types';
 interface AuthCtx {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
+  login: (email: string, password: string, captcha: { token: string; answer: string }) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -28,8 +28,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  async function login(email: string, password: string) {
-    const d = await api.post('/auth/login', { email, password });
+  async function login(email: string, password: string, captcha: { token: string; answer: string }) {
+    const d = await api.post('/auth/login', {
+      email,
+      password,
+      captcha_token: captcha.token,
+      captcha_answer: captcha.answer
+    });
     setUser(d.user);
   }
 
