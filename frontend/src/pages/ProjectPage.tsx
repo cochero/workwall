@@ -8,6 +8,7 @@ import PostCard from '../components/PostCard';
 import FilesTab from '../components/FilesTab';
 import FileDetailDrawer from '../components/FileDetailDrawer';
 import ListsTab from '../components/ListsTab';
+import MeetingsTab from '../components/MeetingsTab';
 import type { Post, ProjectDetail } from '../lib/types';
 import type { ShellContext } from './Shell';
 
@@ -18,7 +19,7 @@ export default function ProjectPage() {
 
   const [detail, setDetail] = useState<ProjectDetail | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [tab, setTab] = useState<'wall' | 'files' | 'lists'>('wall');
+  const [tab, setTab] = useState<'wall' | 'files' | 'lists' | 'meetings'>('wall');
   const [drawerId, setDrawerId] = useState<number | null>(null);
   const [filesKey, setFilesKey] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -118,6 +119,14 @@ export default function ProjectPage() {
         >
           Lists
         </button>
+        <button
+          onClick={() => setTab('meetings')}
+          className={`-mb-px border-b-2 px-1 pb-2 font-medium transition-colors ${
+            tab === 'meetings' ? 'border-violet-600 text-violet-700' : 'border-transparent text-gray-400 hover:text-gray-600'
+          }`}
+        >
+          Meetings
+        </button>
       </div>
 
       {tab === 'wall' && (
@@ -139,6 +148,12 @@ export default function ProjectPage() {
       {tab === 'lists' && (
         <div className="mt-5">
           <ListsTab projectId={pid} members={members} canManage={detail.my_user_role !== 'client'} />
+        </div>
+      )}
+
+      {tab === 'meetings' && (
+        <div className="mt-5">
+          <MeetingsTab projectId={pid} members={members} canManage={detail.my_user_role !== 'client'} />
         </div>
       )}
 
