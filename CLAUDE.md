@@ -1,6 +1,6 @@
 # Workwall (CRM-Communication panel)
 
-Client-project communication panel for KlickEvents — "one wall per project" (Basecamp-style feed, NOT chat). Deployed at **wall.klickevents.in**. Unrelated to CELSE LMS / celselabs-cms.
+Client-project communication panel for KlickEvents — "one wall per project" (Basecamp-style feed, NOT chat). Deployed at **wwall.klickevents.in**. Unrelated to CELSE LMS / celselabs-cms.
 
 ## Stack & layout
 - **backend/** — Express (ESM, plain JS), MySQL via `mysql2` (`db.js` exports `q()`), JWT auth in httpOnly cookie `ww_token` (`middleware/auth.js`), file storage driver in `lib/storage.js` (`STORAGE_DRIVER=local` for dev → `backend/uploads/`; `s3` for prod → Contabo, path-style, presigned GETs).

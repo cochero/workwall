@@ -3,7 +3,7 @@
 One wall per client project — updates, files, and discussion in one place.
 Built for agencies running mixed work (social media management, AP/AR processing, software/web builds) across many clients and a shared team.
 
-**Production:** https://wall.klickevents.in (see [DEPLOYMENT.md](DEPLOYMENT.md))
+**Production:** https://wwall.klickevents.in (see [DEPLOYMENT.md](DEPLOYMENT.md))
 
 ## What it does
 - **Clients → projects → members.** Team members belong to many projects; client users see only their own company's projects.

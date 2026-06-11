@@ -1,9 +1,9 @@
-# Deploying Workwall to wall.klickevents.in
+# Deploying Workwall to wwall.klickevents.in
 
 Target: Ubuntu VPS with Nginx + MySQL + Node 20+ + PM2 (same pattern as celselabs-cms).
 
 ## 1. DNS
-Point `wall.klickevents.in` (A record) at the VPS IP.
+Point `wwall.klickevents.in` (A record) at the VPS IP.
 
 ## 2. Code
 
@@ -53,10 +53,10 @@ npm run build        # outputs frontend/dist, served by nginx
 ## 6. Nginx + HTTPS
 
 ```bash
-sudo cp /var/www/workwall/deploy/nginx-wall.klickevents.in.conf /etc/nginx/sites-available/wall.klickevents.in
-sudo ln -s /etc/nginx/sites-available/wall.klickevents.in /etc/nginx/sites-enabled/
+sudo cp /var/www/workwall/deploy/nginx-wwall.klickevents.in.conf /etc/nginx/sites-available/wwall.klickevents.in
+sudo ln -s /etc/nginx/sites-available/wwall.klickevents.in /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
-sudo certbot --nginx -d wall.klickevents.in
+sudo certbot --nginx -d wwall.klickevents.in
 ```
 
 ## 7. PM2
