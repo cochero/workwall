@@ -300,7 +300,7 @@ export default function ListsTab({
         </p>
       )}
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="space-y-4">
         {lists.map(l => (
           <ListCard key={l.id} list={l} members={members} canManage={canManage} onDeleteList={() => deleteList(l.id)} />
         ))}
