@@ -7,6 +7,7 @@ import PostComposer from '../components/PostComposer';
 import PostCard from '../components/PostCard';
 import FilesTab from '../components/FilesTab';
 import FileDetailDrawer from '../components/FileDetailDrawer';
+import ListsTab from '../components/ListsTab';
 import type { Post, ProjectDetail } from '../lib/types';
 import type { ShellContext } from './Shell';
 
@@ -17,7 +18,7 @@ export default function ProjectPage() {
 
   const [detail, setDetail] = useState<ProjectDetail | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [tab, setTab] = useState<'wall' | 'files'>('wall');
+  const [tab, setTab] = useState<'wall' | 'files' | 'lists'>('wall');
   const [drawerId, setDrawerId] = useState<number | null>(null);
   const [filesKey, setFilesKey] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -109,6 +110,14 @@ export default function ProjectPage() {
         >
           Files
         </button>
+        <button
+          onClick={() => setTab('lists')}
+          className={`-mb-px border-b-2 px-1 pb-2 font-medium transition-colors ${
+            tab === 'lists' ? 'border-violet-600 text-violet-700' : 'border-transparent text-gray-400 hover:text-gray-600'
+          }`}
+        >
+          Lists
+        </button>
       </div>
 
       {tab === 'wall' && (
@@ -124,6 +133,12 @@ export default function ProjectPage() {
       {tab === 'files' && (
         <div className="mt-5">
           <FilesTab key={filesKey} projectId={pid} onOpenFile={setDrawerId} />
+        </div>
+      )}
+
+      {tab === 'lists' && (
+        <div className="mt-5">
+          <ListsTab projectId={pid} members={members} canManage={detail.my_user_role !== 'client'} />
         </div>
       )}
 
