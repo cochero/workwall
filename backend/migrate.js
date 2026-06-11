@@ -10,9 +10,16 @@ async function main() {
   const { host, port, user, password, database } = config.db;
 
   const server = await mysql.createConnection({ host, port, user, password });
-  await server.query(
-    `CREATE DATABASE IF NOT EXISTS \`${database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
-  );
+  try {
+    await server.query(
+      `CREATE DATABASE IF NOT EXISTS \`${database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`
+    );
+  } catch (e) {
+    // In production the database is pre-created by an admin and the app user is
+    // granted privileges only on its own schema (no global CREATE). That's fine
+    // as long as the database already exists — the next connect will confirm it.
+    console.log(`Skipping CREATE DATABASE (${e.code || e.message}); assuming it already exists.`);
+  }
   await server.end();
 
   const db = await mysql.createConnection({ host, port, user, password, database, multipleStatements: true });
