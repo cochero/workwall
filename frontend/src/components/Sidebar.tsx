@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Building2, FolderKanban, LogOut, Rss, Users } from 'lucide-react';
+import { Building2, FolderKanban, LogOut, Rss, Settings, Users } from 'lucide-react';
 import Avatar from './Avatar';
 import { TYPE_DOT } from './Badges';
 import { useAuth } from '../context/AuthContext';
@@ -95,6 +95,9 @@ export default function Sidebar({
             {user.role === 'super' ? 'Administrator' : user.role === 'team' ? 'Team' : 'Client'}
           </p>
         </div>
+        <NavLink to="/account" className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600" title="Account & password">
+          <Settings size={16} />
+        </NavLink>
         <button onClick={handleLogout} className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-600" title="Log out">
           <LogOut size={16} />
         </button>

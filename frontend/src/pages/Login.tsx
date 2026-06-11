@@ -70,6 +70,7 @@ export default function Login() {
               type="email"
               required
               autoFocus
+              autoComplete="username"
               className="input"
               placeholder="you@company.com"
               value={email}
@@ -84,6 +85,7 @@ export default function Login() {
                 id="password"
                 type={showPassword ? 'text' : 'password'}
                 required
+                autoComplete="current-password"
                 className="input pr-10"
                 placeholder="••••••••"
                 value={password}
