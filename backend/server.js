@@ -15,6 +15,7 @@ import notificationsRouter from './routes/notifications.js';
 import feedRouter from './routes/feed.js';
 import listsRouter from './routes/lists.js';
 import meetingsRouter from './routes/meetings.js';
+import plannerRouter from './routes/planner.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -36,6 +37,7 @@ app.use('/api', notificationsRouter);
 app.use('/api', feedRouter);
 app.use('/api', listsRouter);
 app.use('/api', meetingsRouter);
+app.use('/api', plannerRouter);
 
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 
